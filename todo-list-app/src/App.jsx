@@ -1,16 +1,20 @@
-import './App.css'
-import TodoList from './TodoList'
+import { useEffect } from "react";
+import "./App.css";
+import TodoList from "./TodoList";
+import { useDispatch } from "react-redux";
+import { loadTodos } from "./thunks";
 
 function App() {
-  function createTodo(text) {
-    setIncompleteTodos([...incompleteTodos, { text, isCompleted: false }]);
-  }
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadTodos());
+  }, []);
 
   return (
     <>
-    <TodoList />
+      <TodoList />
     </>
   );
 }
 
-export default App
+export default App;
